@@ -3,11 +3,24 @@ import css from './contacts.module.css';
 
 class Contacts extends Component {
   state = {};
+
+  handleClick = e => {
+    this.props.handleDelete(e.target.id);
+  };
   render() {
-      return <>
-          <h2 className={css.title}>Contacts</h2>
-          <ul className={css.list}></ul>
-      </>;
+    const elements = this.props.data.map(({ name, number, id }) => (
+      <li className={css.list} key={id}>
+        {name} : {number}
+        <button id={id} type="button" onClick={this.handleClick}>
+          Delete
+        </button>
+      </li>
+    ));
+    return (
+      <>
+        <ul className={css.list}> {elements}</ul>
+      </>
+    );
   }
 }
 

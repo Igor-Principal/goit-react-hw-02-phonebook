@@ -6,10 +6,38 @@ class Phonebook extends Component {
     name: '',
     number: '',
   };
+
+  handleChange = ({ target }) => {
+    this.setState({
+      [target.name]: target.value,
+    });
+  };
+
+  getInfo = e => {
+    e.preventDefault();
+    const normalizeName = this.state.name;
+    const includeName = this.props.data.some(
+      contact =>
+        contact.name.toLocaleLowerCase() ===
+        normalizeName.toLocaleLowerCase().trim()
+    );
+    if (includeName) {
+      alert(`${normalizeName} is already in contacts`);
+    } else {
+      this.props.createContact({
+        name: this.state.name.toLocaleLowerCase().trim(),
+        number: this.state.number,
+      });
+    }
+    this.setState({
+      name: '',
+      number: '',
+    });
+  };
+
   render() {
     return (
-      <form className={css.form}>
-        <h1 className={css.title}>Phonebook</h1>
+      <form className={css.form} onSubmit={this.getInfo}>
         <label className={css.titleSmall} htmlFor="name">
           Name
         </label>
@@ -19,6 +47,8 @@ class Phonebook extends Component {
           id="name"
           name="name"
           required
+          value={this.state.name}
+          onChange={this.handleChange}
         />
         <label className={css.titleSmall} htmlFor="number">
           Number
@@ -29,6 +59,8 @@ class Phonebook extends Component {
           name="number"
           id="nomber"
           required
+          value={this.state.number}
+          onChange={this.handleChange}
         />
         <button className={css.button} type="submit">
           Add contact
