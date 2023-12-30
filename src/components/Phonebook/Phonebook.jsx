@@ -8,34 +8,32 @@ class Phonebook extends Component {
   };
   render() {
     return (
-      <>
-        <form className={css.form}>
-          <h1 className={css.title}>Phonebook</h1>
-          <label className={css.titleSmall} htmlFor="name">
-            Name
-          </label>
-          <input
-            className={css.inputName}
-            type="text"
-            id="name"
-            name="name"
-            required
-          />
-          <label className={css.titleSmall} htmlFor="number">
-            Number
-          </label>
-          <input
-            className={css.inputTel}
-            type="tel"
-            name="number"
-            id="nomber"
-            required
-          />
-          <button className={css.button} type="submit">
-            Add contact
-          </button>
-        </form>
-      </>
+      <form className={css.form}>
+        <h1 className={css.title}>Phonebook</h1>
+        <label className={css.titleSmall} htmlFor="name">
+          Name
+        </label>
+        <input
+          className={css.inputName}
+          type="text"
+          id="name"
+          name="name"
+          required
+        />
+        <label className={css.titleSmall} htmlFor="number">
+          Number
+        </label>
+        <input
+          className={css.inputTel}
+          type="tel"
+          name="number"
+          id="nomber"
+          required
+        />
+        <button className={css.button} type="submit">
+          Add contact
+        </button>
+      </form>
     );
   }
 }
