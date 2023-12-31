@@ -19,9 +19,10 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, user],
     }));
+    console.log(user);
   };
 
-  handleChange = ({ target }) => {
+  handleFilter = ({ target }) => {
     this.setState({ filter: target.value });
   };
 
@@ -33,18 +34,22 @@ export class App extends Component {
 
   render() {
     const filteted = this.state.contacts.filter(contact =>
-      contact.name.includes(this.state.filter)
+      contact.name.toLowerCase().includes(this.state.filter.toLocaleLowerCase())
     );
     return (
-      <div>
+      <div className={css.wrapper}>
         <h1 className={css.title}>Phonebook</h1>
         <Phonebook
           createContact={this.createContact}
           data={this.state.contacts}
         />
-        <h2 className={css.title}>Contacts</h2>
-        <Filter filter={this.state.filter} onChange={this.handleChange} />
-        <Contacts data={filteted} handleDelete={this.handleDelete} />
+        {this.state.contacts.length > 0 && (
+          <>
+            <h2 className={css.title}>Contacts</h2>
+            <Filter filter={this.state.filter} onChange={this.handleFilter} />
+            <Contacts data={filteted} handleDelete={this.handleDelete} />
+          </>
+        )}
       </div>
     );
   }

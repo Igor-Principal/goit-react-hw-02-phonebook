@@ -25,7 +25,7 @@ class Phonebook extends Component {
       alert(`${normalizeName} is already in contacts`);
     } else {
       this.props.createContact({
-        name: this.state.name.toLocaleLowerCase().trim(),
+        name: this.state.name.trim(),
         number: this.state.number,
       });
     }
@@ -42,7 +42,7 @@ class Phonebook extends Component {
           Name
         </label>
         <input
-          className={css.inputName}
+          className={css.input}
           type="text"
           id="name"
           name="name"
@@ -54,7 +54,7 @@ class Phonebook extends Component {
           Number
         </label>
         <input
-          className={css.inputTel}
+          className={css.input}
           type="tel"
           name="number"
           id="nomber"

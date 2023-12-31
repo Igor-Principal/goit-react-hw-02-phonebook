@@ -9,9 +9,14 @@ class Contacts extends Component {
   };
   render() {
     const elements = this.props.data.map(({ name, number, id }) => (
-      <li className={css.list} key={id}>
+      <li className={css.item} key={id}>
         {name} : {number}
-        <button id={id} type="button" onClick={this.handleClick}>
+        <button
+          className={css.button}
+          id={id}
+          type="button"
+          onClick={this.handleClick}
+        >
           Delete
         </button>
       </li>
